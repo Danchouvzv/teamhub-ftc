@@ -12,7 +12,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  // Mock Data
+  // покаммок дата для иллюстрации
   final List<Task> _upcomingTasks = [
     Task(
       id: '1',
@@ -72,26 +72,51 @@ class _DashboardScreenState extends State<DashboardScreen> {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      AppTheme.primaryColor,
-                      AppTheme.primaryLight,
-                      AppTheme.accentColor.withOpacity(0.8),
+                      Color(0xFF667EEA),  // Фиолетовый
+                      Color(0xFF764BA2),  // Темно-фиолетовый
+                      Color(0xFFF093FB),  // Светло-розовый
                     ],
+                    stops: [0.0, 0.5, 1.0],
                   ),
                 ),
                 child: Stack(
                   children: [
-                    // Decorative elements
+                    // Декоративные круги - красивее расположены
                     Positioned(
-                      top: -50,
-                      right: -50,
+                      top: -80,
+                      right: -40,
                       child: Container(
-                        width: 200,
-                        height: 200,
+                        width: 180,
+                        height: 180,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.15),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 40,
+                      right: 60,
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.08),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: -20,
+                      left: -40,
+                      child: Container(
+                        width: 140,
+                        height: 140,
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.1),
                           shape: BoxShape.circle,
@@ -99,15 +124,43 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
                     Positioned(
-                      bottom: -30,
-                      left: -30,
+                      bottom: 50,
+                      left: 100,
                       child: Container(
-                        width: 150,
-                        height: 150,
+                        width: 60,
+                        height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.05),
+                          color: Colors.white.withOpacity(0.06),
                           shape: BoxShape.circle,
                         ),
+                      ),
+                    ),
+                    // Звездочки для красоты
+                    Positioned(
+                      top: 100,
+                      right: 30,
+                      child: Icon(
+                        Icons.star,
+                        color: Colors.white.withOpacity(0.3),
+                        size: 16,
+                      ),
+                    ),
+                    Positioned(
+                      top: 70,
+                      left: 50,
+                      child: Icon(
+                        Icons.star,
+                        color: Colors.white.withOpacity(0.25),
+                        size: 12,
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 80,
+                      right: 120,
+                      child: Icon(
+                        Icons.star,
+                        color: Colors.white.withOpacity(0.2),
+                        size: 14,
                       ),
                     ),
                     // Content
@@ -149,6 +202,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Row(
                                 children: [
@@ -156,42 +210,49 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     'Привет, ',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                                    decoration: BoxDecoration(
-                                      gradient: const LinearGradient(
-                                        colors: [Color(0xFFFF3D9A), Color(0xFFFF6BB3)],
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: const Color(0xFFFF3D9A).withOpacity(0.4),
-                                          blurRadius: 8,
-                                          offset: const Offset(0, 2),
+                                  Flexible(
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                          colors: [
+                                            Color(0xFFFF6B9D),  // Яркий розовый
+                                            Color(0xFFFFA07A),  // Персиковый
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                    child: const Text(
-                                      'Даниял! 👋',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: const Color(0xFFFF6B9D).withOpacity(0.5),
+                                            blurRadius: 12,
+                                            offset: const Offset(0, 4),
+                                          ),
+                                        ],
+                                      ),
+                                      child: const Text(
+                                        'Даниял! 👋',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              const SizedBox(height: 6),
                               Text(
                                 'Команда Neura • Кодер',
                                 style: TextStyle(
-                                  color: Colors.white.withOpacity(0.9),
+                                  color: Colors.white.withOpacity(0.95),
                                   fontSize: 14,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
@@ -341,6 +402,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ],
           ),
+
+          
                   const SizedBox(height: 16),
 
                   ...(_upcomingTasks.isEmpty
