@@ -23,6 +23,34 @@ class NoteModel extends Equatable {
     this.updatedAt,
   }) : createdAt = createdAt ?? DateTime.now();
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'projectId': projectId,
+      'parentId': parentId,
+      'title': title,
+      'content': content,
+      'tags': tags,
+      'attachmentUrls': attachmentUrls,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt?.toIso8601String(),
+    };
+  }
+
+  factory NoteModel.fromJson(Map<String, dynamic> json) {
+    return NoteModel(
+      id: json['id'] as String,
+      projectId: json['projectId'] as String,
+      parentId: json['parentId'] as String?,
+      title: json['title'] as String,
+      content: json['content'] as String?,
+      tags: List<String>.from(json['tags'] ?? []),
+      attachmentUrls: List<String>.from(json['attachmentUrls'] ?? []),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt'] as String) : null,
+    );
+  }
+
   @override
   List<Object?> get props => [
         id,

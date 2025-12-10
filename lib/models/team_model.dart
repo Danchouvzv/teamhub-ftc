@@ -29,6 +29,40 @@ class TeamModel extends Equatable {
     DateTime? createdAt,
   }) : createdAt = createdAt ?? DateTime.now();
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'ftcNumber': ftcNumber,
+      'country': country,
+      'city': city,
+      'school': school,
+      'description': description,
+      'logoUrl': logoUrl,
+      'inviteCode': inviteCode,
+      'captainId': captainId,
+      'memberIds': memberIds,
+      'createdAt': createdAt.toIso8601String(),
+    };
+  }
+
+  factory TeamModel.fromJson(Map<String, dynamic> json) {
+    return TeamModel(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      ftcNumber: json['ftcNumber'] as String?,
+      country: json['country'] as String,
+      city: json['city'] as String,
+      school: json['school'] as String?,
+      description: json['description'] as String?,
+      logoUrl: json['logoUrl'] as String?,
+      inviteCode: json['inviteCode'] as String? ?? '',
+      captainId: json['captainId'] as String,
+      memberIds: List<String>.from(json['memberIds'] ?? []),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+    );
+  }
+
   @override
   List<Object?> get props => [
         id,

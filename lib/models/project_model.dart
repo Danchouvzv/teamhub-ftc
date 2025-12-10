@@ -17,6 +17,28 @@ class ProjectModel extends Equatable {
     this.updatedAt,
   }) : createdAt = createdAt ?? DateTime.now();
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'teamId': teamId,
+      'name': name,
+      'description': description,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt?.toIso8601String(),
+    };
+  }
+
+  factory ProjectModel.fromJson(Map<String, dynamic> json) {
+    return ProjectModel(
+      id: json['id'] as String,
+      teamId: json['teamId'] as String,
+      name: json['name'] as String,
+      description: json['description'] as String?,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt'] as String) : null,
+    );
+  }
+
   @override
   List<Object?> get props => [
         id,

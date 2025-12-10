@@ -29,6 +29,38 @@ class UserModel extends Equatable {
 
   String get fullName => '$firstName $lastName';
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'email': email,
+      'firstName': firstName,
+      'lastName': lastName,
+      'nickname': nickname,
+      'role': role,
+      'age': age,
+      'country': country,
+      'city': city,
+      'avatarUrl': avatarUrl,
+      'teamId': teamId,
+    };
+  }
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'] as String,
+      email: json['email'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      nickname: json['nickname'] as String?,
+      role: json['role'] as String?,
+      age: json['age'] as int?,
+      country: json['country'] as String?,
+      city: json['city'] as String?,
+      avatarUrl: json['avatarUrl'] as String?,
+      teamId: json['teamId'] as String?,
+    );
+  }
+
   @override
   List<Object?> get props => [
         id,
